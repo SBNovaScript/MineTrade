@@ -45,9 +45,6 @@
     <ClCompile Include="Stick.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>
-    <ClCompile Include="Main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Rock.cpp">
       <Filter>Source Files\Items</Filter>
     </ClCompile>

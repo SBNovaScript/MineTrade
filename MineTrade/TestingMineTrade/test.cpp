@@ -91,6 +91,7 @@ but reduce the amount you can mine to 10%.
 */
 
 TEST(StevenTestCases, EquipEquipment) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
     std::vector<Item> oldEquipment = inventory.getAllEquipment();
 
@@ -98,10 +99,25 @@ TEST(StevenTestCases, EquipEquipment) {
 
     inventory.equip(Trader::getItemFromName("rock"));
 
-    EXPECT_NE(inventory.getAllEquipment(), oldEquipment);
+    std::vector<std::string> oldEquipmentToString;
+
+    for (Item item : oldEquipment)
+    {
+        oldEquipmentToString.push_back(item.getName());
+    }
+
+    std::vector<std::string> newEquipmentToString;
+
+    for (Item item : inventory.getAllEquipment())
+    {
+        newEquipmentToString.push_back(item.getName());
+    }
+
+    EXPECT_NE(newEquipmentToString, oldEquipmentToString);
 }
 
 TEST(StevenTestCases, UnequipEquipment) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
     std::vector<Item> oldEquipment = inventory.getAllEquipment();
 
@@ -110,5 +126,19 @@ TEST(StevenTestCases, UnequipEquipment) {
     inventory.equip(Trader::getItemFromName("rock"));
     inventory.unequip(Trader::getItemFromName("rock"));
 
-    EXPECT_EQ(inventory.getAllEquipment(), oldEquipment);
+    std::vector<std::string> oldEquipmentToString;
+
+    for (Item item : oldEquipment)
+    {
+        oldEquipmentToString.push_back(item.getName());
+    }
+
+    std::vector<std::string> newEquipmentToString;
+
+    for (Item item : inventory.getAllEquipment())
+    {
+        newEquipmentToString.push_back(item.getName());
+    }
+
+    EXPECT_EQ(newEquipmentToString, oldEquipmentToString);
 }

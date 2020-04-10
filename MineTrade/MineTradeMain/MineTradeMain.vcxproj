@@ -20,13 +20,13 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{09177D42-8AA9-416C-9F26-54E678AA84EA}</ProjectGuid>
-    <RootNamespace>MineTrade</RootNamespace>
+    <ProjectGuid>{0784655D-AA53-4A08-AC08-2DD2CE1A4377}</ProjectGuid>
+    <RootNamespace>MineTradeMain</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
@@ -138,30 +138,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Batter.cpp" />
-    <ClCompile Include="CraftingManager.cpp" />
-    <ClCompile Include="Fish.cpp" />
-    <ClCompile Include="Fishsticks.cpp" />
-    <ClCompile Include="Inventory.cpp" />
-    <ClCompile Include="Iron.cpp" />
-    <ClCompile Include="Item.cpp" />
-    <ClCompile Include="Munny.cpp" />
-    <ClCompile Include="Rock.cpp" />
-    <ClCompile Include="Stick.cpp" />
-    <ClCompile Include="Trader.cpp" />
+    <ProjectReference Include="..\MineTrade\MineTrade.vcxproj">
+      <Project>{09177d42-8aa9-416c-9f26-54e678aa84ea}</Project>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Batter.h" />
-    <ClInclude Include="CraftingManager.h" />
-    <ClInclude Include="Fish.h" />
-    <ClInclude Include="Fishsticks.h" />
-    <ClInclude Include="Inventory.h" />
-    <ClInclude Include="Iron.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="Munny.h" />
-    <ClInclude Include="Rock.h" />
-    <ClInclude Include="Stick.h" />
-    <ClInclude Include="Trader.h" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

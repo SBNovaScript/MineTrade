@@ -1,6 +1,7 @@
 #pragma once
-#include "Item.h"
-#include <unordered_map>
+#include "Munny.h"
+#include <map>
+#include <memory>
 
 class Inventory
 {
@@ -8,8 +9,9 @@ public:
 	Inventory();
 	void addItem(Item item);
 	void removeItem(Item item);
-	std::unordered_map<Item, int> getAllItems();
+	std::map<Item, int, ItemCompare> getAllItems();
 	int getItemAmount(Item item);
+	int getAmountOfMoneyOwned();
 	void addMunny(int amount);
 	void removeMunny(int amount);
 	bool buyItem(Item item);
@@ -18,8 +20,8 @@ public:
 private:
 
 	// A dictionary between the item name and the amount the user has.
-	std::unordered_map<Item, int> items;
+	std::map<Item, int, ItemCompare> items;
 
 	// The item that represents Munny.
-	Item munnyItem;
+	std::unique_ptr<Munny> munnyItem;
 };

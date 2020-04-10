@@ -11,8 +11,23 @@ public:
 	std::string getName() { return name; }
 	int getBasePrice() { return basePrice; }
 
-protected:
-	std::string name;
+	// Overloads
+	bool operator < (const Item& obj)
+	{
+		return this->basePrice < obj.basePrice;
+	}
+
 	int basePrice;
 
+protected:
+	std::string name;
+	
+};
+
+struct ItemCompare
+{
+	bool operator() (const Item& lhs, const Item& rhs) const
+	{
+		return lhs.basePrice < rhs.basePrice;
+	}
 };

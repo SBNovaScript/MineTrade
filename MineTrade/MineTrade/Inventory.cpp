@@ -1,5 +1,6 @@
 #include "Inventory.h"
 #include "Trader.h"
+#include "CraftingManager.h"
 
 Inventory::Inventory()
 {
@@ -83,18 +84,29 @@ void Inventory::mineRocks()
 
 void Inventory::equip(Item item)
 {
-	removeItem(item.getName());
+	removeItem(item);
 	equipment.push_back(item);
 }
 
 void Inventory::unequip(Item item)
 {
-	addItem(item.getName());
+	addItem(item);
 	equipment.clear();
 }
 
 std::vector<Item> Inventory::getAllEquipment()
 {
 	return equipment;
+}
+
+void Inventory::craft(Item item)
+{
+	std::vector<Item> recipe = CraftingManager::getCraftingRequirements(item);
+	for (Item recipeItem : recipe)
+	{
+		removeItem(recipeItem);
+	}
+
+	addItem(item);
 }
 

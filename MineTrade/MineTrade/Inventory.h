@@ -2,6 +2,7 @@
 #include "Munny.h"
 #include <map>
 #include <memory>
+#include <vector>
 
 class Inventory
 {
@@ -20,6 +21,7 @@ public:
 	void equip(Item item);
 	void unequip(Item item);
 	std::vector<Item> getAllEquipment();
+	void craft(Item item);
 
 private:
 

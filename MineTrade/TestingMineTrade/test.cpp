@@ -6,7 +6,7 @@ TEST(TestCases, BuyFromTrader) {
     Inventory inventory = Inventory();
     int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("stick")) + 1;
     int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
-    
+
     // Give the player 10 munny to test.
     inventory.addMunny(10);
 
@@ -36,7 +36,7 @@ TEST(DavidTestCases, SellToTrader) {
 TEST(DavidTestCases, SimpleCrafting) {
     Inventory inventory = Inventory();
     int updatedFishInventoryCount = inventory.getItemAmount(Trader::getItemFromName("fish")) - 1;
-    int updatedBatterInventoryCount = inventory.getItemAmount(Trader::getItemFromName("batter")) + 1;;
+    int updatedBatterInventoryCount = inventory.getItemAmount(Trader::getItemFromName("batter")) - 1;;
     
     inventory.craft(Trader::getItemFromName("fishsticks"));
 
@@ -78,7 +78,7 @@ but reduce the amount you can mine to 10%.
 
 TEST(StevenTestCases, EquipEquipment) {
     Inventory inventory = Inventory();
-    std::vector<Equipment> oldEquipment = inventory.getAllEquipment();
+    std::vector<Item> oldEquipment = inventory.getAllEquipment();
 
     inventory.mineRocks();
 
@@ -89,7 +89,7 @@ TEST(StevenTestCases, EquipEquipment) {
 
 TEST(StevenTestCases, UnequipEquipment) {
     Inventory inventory = Inventory();
-    std::vector<Equipment> oldEquipment = inventory.getAllEquipment();
+    std::vector<Item> oldEquipment = inventory.getAllEquipment();
 
     inventory.mineRocks();
 

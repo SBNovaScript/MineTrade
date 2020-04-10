@@ -3,6 +3,7 @@
 #include "Iron.h"
 #include "Fish.h"
 #include "Batter.h"
+#include "Fishsticks.h"
 #include "Rock.h"
 #include <memory>
 
@@ -20,6 +21,7 @@ void Trader::populateInventoryWithDefaultItems()
 	std::shared_ptr<Item> iron(new Iron(5));
 	std::shared_ptr<Item> fish(new Fish(10));
 	std::shared_ptr<Item> batter(new Batter(20));
+	std::shared_ptr<Item> fishsticks(new Fishsticks(25));
 	std::shared_ptr<Item> rock(new Rock(1));
 
 	itemsForSale[*stick] = stick->getBasePrice();
@@ -27,12 +29,14 @@ void Trader::populateInventoryWithDefaultItems()
 	itemsForSale[*fish] = fish->getBasePrice();
 	itemsForSale[*batter] = batter->getBasePrice();
 	itemsForSale[*rock] = rock->getBasePrice();
+	itemsForSale[*fishsticks] = fishsticks->getBasePrice();
 
 	availableItems.push_back(stick);
 	availableItems.push_back(iron);
 	availableItems.push_back(fish);
 	availableItems.push_back(batter);
 	availableItems.push_back(rock);
+	availableItems.push_back(fishsticks);
 }
 
 int Trader::getItemPrice(Item item)

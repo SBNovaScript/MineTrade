@@ -1,44 +1,100 @@
 #include "pch.h"
 #include "../MineTrade/Inventory.h"
+#include "../MineTrade/Trader.h"
 
-TEST(TestCaseName, TestName) {
-  EXPECT_EQ(1, 1);
-  EXPECT_TRUE(true);
+TEST(TestCases, BuyFromTrader) {
+    Inventory inventory = Inventory();
+    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("stick")) + 1;
+    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
+    
+    // Give the player 10 munny to test.
+    inventory.addMunny(10);
+
+    // Buy the stick from the trader.
+    inventory.buyItem(Trader::getItemFromName("stick"));
+
+    EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("stick")), updatedInventoryCount);
+    EXPECT_LT(inventory.getAmountOfMoneyOwned(), oldMunnyBalance);
 }
 
-TEST(DavidTestCases, BuyFromTrader) {
-    Inventory test;
-    //Inventory inventory = Inventory();
-    //int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("stick")) + 1;
-    //int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
-    //
-    //// Give the player 10 munny to test.
-    //inventory.addMunny(10);
+TEST(DavidTestCases, SellToTrader) {
+    Inventory inventory = Inventory();
+    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("iron")) + 1;
+    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
 
-    //// Buy the stick from the trader.
-    //inventory.buyItem(Trader::getItemFromName("stick"));
+    // Give the player 10 munny to test.
+    inventory.addMunny(10);
 
-    //EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("stick")), updatedInventoryCount);
-    //EXPECT_LT(inventory.getAmountOfMoneyOwned(), oldMunnyBalance);
-    EXPECT_EQ(1, 1);
-    EXPECT_TRUE(true);
+    // Buy the stick from the trader.
+    inventory.sellItem(Trader::getItemFromName("iron"));
+
+    EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("iron")), updatedInventoryCount);
+    EXPECT_GT(inventory.getAmountOfMoneyOwned(), oldMunnyBalance);
 }
 
-//TEST(DavidTestCases, SellToTrader) {
-//    Inventory inventory;
-//    int updatedInventoryCount = items["iron"] - 1;
-//    int oldMunnyBalance = items["iron"];
-//    //then call sell function
-//    EXPECT_EQ(items["iron"], updatedInventoryCount);
-//    EXPECT_GT(items["iron"], oldMunnyBalance);
-//}
-//
-//TEST(DavidTestCases, SimpleCrafting) {
-//    Inventory inventory;
-//    int updatedFishInventoryCount = items["fish"] - 1;
-//    int updatedBatterInventoryCount = items["batter"] - 1;
-//    //then call crafting function
-//    EXPECT_EQ(items["fish"], updatedFishInventoryCount);
-//    EXPECT_EQ(items["batter"], updatedBatterInventoryCount);
-//    EXPECT_EQ(items["fishsticks"], 1);
-//}
+// Not implemented yet
+TEST(DavidTestCases, SimpleCrafting) {
+    Inventory inventory = Inventory();
+    int updatedFishInventoryCount = inventory.getItemAmount(Trader::getItemFromName("fish")) - 1;
+    int updatedBatterInventoryCount = inventory.getItemAmount(Trader::getItemFromName("batter")) + 1;;
+    
+    inventory.craft(Trader::getItemFromName("fishsticks"));
+
+    EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("fish")), updatedFishInventoryCount);
+    EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("batter")), updatedBatterInventoryCount);
+    EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("fishsticks")), 1);
+}
+
+TEST(StevenTestCases, Mining) {
+    Inventory inventory = Inventory();
+    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("rock")) + 1;
+
+    inventory.mineRocks();
+
+    EXPECT_GT(inventory.getItemAmount(Trader::getItemFromName("rock")), updatedInventoryCount);
+}
+
+TEST(StevenTestCases, SellMinedRock) {
+    Inventory inventory = Inventory();
+    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("rock")) - 1;
+
+    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
+
+    inventory.mineRocks();
+
+    // Buy the stick from the trader.
+    inventory.sellItem(Trader::getItemFromName("rock"));
+
+    EXPECT_GT(inventory.getItemAmount(Trader::getItemFromName("rock")), updatedInventoryCount);
+    EXPECT_GT(inventory.getAmountOfMoneyOwned(), oldMunnyBalance);
+}
+
+/*
+The user can equip certain items either as armor pieces or a weapon/shield, 
+which will alter prices in the store, and change the amount the user can mine. 
+E.g. equipping a golden spoon will increase item sell value in the store, 
+but reduce the amount you can mine to 10%.
+*/
+
+TEST(StevenTestCases, EquipEquipment) {
+    Inventory inventory = Inventory();
+    std::vector<Equipment> oldEquipment = inventory.getAllEquipment();
+
+    inventory.mineRocks();
+
+    inventory.equip(Trader::getItemFromName("rock"));
+
+    EXPECT_NE(inventory.getAllEquipment(), oldEquipment);
+}
+
+TEST(StevenTestCases, UnequipEquipment) {
+    Inventory inventory = Inventory();
+    std::vector<Equipment> oldEquipment = inventory.getAllEquipment();
+
+    inventory.mineRocks();
+
+    inventory.equip(Trader::getItemFromName("rock"));
+    inventory.unequip(Trader::getItemFromName("rock"));
+
+    EXPECT_EQ(inventory.getAllEquipment(), oldEquipment);
+}

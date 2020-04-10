@@ -1,6 +1,5 @@
 #include "Inventory.h"
 #include "Trader.h"
-#include "Munny.h"
 
 Inventory::Inventory()
 {

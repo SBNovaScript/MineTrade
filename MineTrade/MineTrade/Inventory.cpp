@@ -75,3 +75,26 @@ void Inventory::removeMunny(int amount)
 	items[*munnyItem] -= amount;
 
 }
+
+void Inventory::mineRocks()
+{
+	addItem(Trader::getItemFromName("rock"));
+}
+
+void Inventory::equip(Item item)
+{
+	removeItem(item.getName());
+	equipment.push_back(item);
+}
+
+void Inventory::unequip(Item item)
+{
+	addItem(item.getName());
+	equipment.clear();
+}
+
+std::vector<Item> Inventory::getAllEquipment()
+{
+	return equipment;
+}
+

@@ -16,6 +16,10 @@ public:
 	void removeMunny(int amount);
 	bool buyItem(Item item);
 	bool sellItem(Item item);
+	void mineRocks();
+	void equip(Item item);
+	void unequip(Item item);
+	std::vector<Item> getAllEquipment();
 
 private:
 
@@ -24,4 +28,7 @@ private:
 
 	// The item that represents Munny.
 	std::unique_ptr<Munny> munnyItem;
+
+	//std::vector<Item> equipment;
+	std::vector<Item> equipment;
 };

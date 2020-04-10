@@ -23,11 +23,3 @@ protected:
 	std::string name;
 	
 };
-
-struct ItemCompare
-{
-	bool operator() (const Item& lhs, const Item& rhs) const
-	{
-		return lhs.basePrice < rhs.basePrice;
-	}
-};

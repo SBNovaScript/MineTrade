@@ -9,27 +9,27 @@ Inventory::Inventory()
 
 void Inventory::addItem(Item item)
 {
-	items[item]++;
+	items[item.getName()]++;
 }
 
 void Inventory::removeItem(Item item)
 {
-	items[item]--;
+	items[item.getName()]--;
 }
 
-std::map<Item, int, ItemCompare> Inventory::getAllItems()
+std::map<std::string, int> Inventory::getAllItems()
 {
 	return items;
 }
 
 int Inventory::getItemAmount(Item item)
 {
-	return items[item];
+	return items[item.getName()];
 }
 
 int Inventory::getAmountOfMoneyOwned()
 {
-	return items[*munnyItem];
+	return items[munnyItem->getName()];
 }
 
 bool Inventory::buyItem(Item item)
@@ -38,7 +38,7 @@ bool Inventory::buyItem(Item item)
 
 	// If we have enough money to buy the item
 
-	if (items[*munnyItem] >= traderPrice)
+	if (items[munnyItem->getName()] >= traderPrice)
 	{
 		removeMunny(traderPrice);
 		addItem(item);
@@ -53,9 +53,9 @@ bool Inventory::sellItem(Item item)
 	int traderPrice = Trader::getItemPrice(item);
 
 	// If we have the item
-	if (items[item] > 0)
+	if (items[item.getName()] > 0)
 	{
-		removeItem(item.getName());
+		removeItem(item);
 		addMunny(traderPrice);
 		return true;
 	}
@@ -66,14 +66,14 @@ bool Inventory::sellItem(Item item)
 void Inventory::addMunny(int amount)
 {
 
-	items[*munnyItem] += amount;
+	items[munnyItem->getName()] += amount;
 
 }
 
 void Inventory::removeMunny(int amount)
 {
 
-	items[*munnyItem] -= amount;
+	items[munnyItem->getName()] -= amount;
 
 }
 

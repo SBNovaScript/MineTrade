@@ -2,13 +2,20 @@
 #include "../MineTrade/Inventory.h"
 #include "../MineTrade/Trader.h"
 
+TEST(StevenTestCases, TraderTest) {
+    Trader trader = Trader();
+    EXPECT_EQ(Trader::getItemPrice(Trader::getItemFromName("iron")), 5);
+}
+
 TEST(TestCases, BuyFromTrader) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
-    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("stick")) + 1;
-    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
 
     // Give the player 10 munny to test.
     inventory.addMunny(10);
+
+    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("stick")) + 1;
+    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
 
     // Buy the stick from the trader.
     inventory.buyItem(Trader::getItemFromName("stick"));
@@ -18,12 +25,16 @@ TEST(TestCases, BuyFromTrader) {
 }
 
 TEST(DavidTestCases, SellToTrader) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
-    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("iron")) + 1;
-    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
 
     // Give the player 10 munny to test.
     inventory.addMunny(10);
+
+    inventory.addItem(Trader::getItemFromName("iron"));
+
+    int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("iron")) - 1;
+    int oldMunnyBalance = inventory.getAmountOfMoneyOwned();
 
     // Buy the stick from the trader.
     inventory.sellItem(Trader::getItemFromName("iron"));
@@ -34,6 +45,7 @@ TEST(DavidTestCases, SellToTrader) {
 
 // Not implemented yet
 TEST(DavidTestCases, SimpleCrafting) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
     int updatedFishInventoryCount = inventory.getItemAmount(Trader::getItemFromName("fish")) - 1;
     int updatedBatterInventoryCount = inventory.getItemAmount(Trader::getItemFromName("batter")) - 1;;
@@ -46,15 +58,17 @@ TEST(DavidTestCases, SimpleCrafting) {
 }
 
 TEST(StevenTestCases, Mining) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
     int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("rock")) + 1;
 
     inventory.mineRocks();
 
-    EXPECT_GT(inventory.getItemAmount(Trader::getItemFromName("rock")), updatedInventoryCount);
+    EXPECT_EQ(inventory.getItemAmount(Trader::getItemFromName("rock")), updatedInventoryCount);
 }
 
 TEST(StevenTestCases, SellMinedRock) {
+    Trader trader = Trader();
     Inventory inventory = Inventory();
     int updatedInventoryCount = inventory.getItemAmount(Trader::getItemFromName("rock")) - 1;
 

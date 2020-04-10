@@ -16,7 +16,7 @@ public:
 private:
 
 	// A map between an item and it's cost.
-	static std::map<Item, int, ItemCompare> itemsForSale;
+	static std::map<std::string, int> itemsForSale;
 
 	// A vector of all available object pointers.
 	static std::vector<std::shared_ptr<Item>> availableItems;

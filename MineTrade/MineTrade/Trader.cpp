@@ -7,7 +7,7 @@
 #include "Rock.h"
 #include <memory>
 
-std::map<Item, int, ItemCompare> Trader::itemsForSale = std::map<Item, int, ItemCompare>();
+std::map<std::string, int> Trader::itemsForSale = std::map<std::string, int>();
 std::vector<std::shared_ptr<Item>> Trader::availableItems = std::vector<std::shared_ptr<Item>>();
 
 Trader::Trader()
@@ -24,12 +24,12 @@ void Trader::populateInventoryWithDefaultItems()
 	std::shared_ptr<Item> fishsticks(new Fishsticks(25));
 	std::shared_ptr<Item> rock(new Rock(1));
 
-	itemsForSale[*stick] = stick->getBasePrice();
-	itemsForSale[*iron] = iron->getBasePrice();
-	itemsForSale[*fish] = fish->getBasePrice();
-	itemsForSale[*batter] = batter->getBasePrice();
-	itemsForSale[*rock] = rock->getBasePrice();
-	itemsForSale[*fishsticks] = fishsticks->getBasePrice();
+	itemsForSale[stick->getName()] = stick->getBasePrice();
+	itemsForSale[iron->getName()] = iron->getBasePrice();
+	itemsForSale[fish->getName()] = fish->getBasePrice();
+	itemsForSale[batter->getName()] = batter->getBasePrice();
+	itemsForSale[rock->getName()] = rock->getBasePrice();
+	itemsForSale[fishsticks->getName()] = fishsticks->getBasePrice();
 
 	availableItems.push_back(stick);
 	availableItems.push_back(iron);
@@ -41,7 +41,7 @@ void Trader::populateInventoryWithDefaultItems()
 
 int Trader::getItemPrice(Item item)
 {
-	return itemsForSale[item];
+	return itemsForSale[item.getName()];
 }
 
 std::shared_ptr<Item> Trader::getItemPointerFromName(std::string itemName)

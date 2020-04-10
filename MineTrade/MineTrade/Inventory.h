@@ -10,7 +10,7 @@ public:
 	Inventory();
 	void addItem(Item item);
 	void removeItem(Item item);
-	std::map<Item, int, ItemCompare> getAllItems();
+	std::map<std::string, int> getAllItems();
 	int getItemAmount(Item item);
 	int getAmountOfMoneyOwned();
 	void addMunny(int amount);
@@ -26,7 +26,7 @@ public:
 private:
 
 	// A dictionary between the item name and the amount the user has.
-	std::map<Item, int, ItemCompare> items;
+	std::map<std::string, int> items;
 
 	// The item that represents Munny.
 	std::unique_ptr<Munny> munnyItem;

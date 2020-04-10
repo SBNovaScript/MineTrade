@@ -138,11 +138,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Batter.cpp" />
+    <ClCompile Include="Fish.cpp" />
     <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Iron.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Munny.cpp" />
+    <ClCompile Include="Stick.cpp" />
+    <ClCompile Include="Trader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Batter.h" />
+    <ClInclude Include="Fish.h" />
     <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Iron.h" />
+    <ClInclude Include="Item.h" />
+    <ClInclude Include="Munny.h" />
+    <ClInclude Include="Stick.h" />
+    <ClInclude Include="Trader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

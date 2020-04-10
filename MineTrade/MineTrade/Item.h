@@ -4,9 +4,15 @@
 class Item
 {
 public:
+	Item();
 	Item(std::string name);
-	std::string getName() { return name;  }
+	Item(std::string name, int basePrice);
 
-private:
+	std::string getName() { return name; }
+	int getBasePrice() { return basePrice; }
+
+protected:
 	std::string name;
+	int basePrice;
+
 };

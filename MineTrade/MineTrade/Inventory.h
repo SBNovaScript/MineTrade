@@ -7,11 +7,19 @@ class Inventory
 public:
 	Inventory();
 	void addItem(Item item);
-	std::unordered_map<std::string, int> getAllItems();
-	int getItemAmount(std::string itemName);
+	void removeItem(Item item);
+	std::unordered_map<Item, int> getAllItems();
+	int getItemAmount(Item item);
+	void addMunny(int amount);
+	void removeMunny(int amount);
+	bool buyItem(Item item);
+	bool sellItem(Item item);
 
 private:
 
 	// A dictionary between the item name and the amount the user has.
-	std::unordered_map<std::string, int> items;
+	std::unordered_map<Item, int> items;
+
+	// The item that represents Munny.
+	Item munnyItem;
 };

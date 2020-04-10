@@ -21,9 +21,51 @@
     <ClCompile Include="Inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Trader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Stick.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Iron.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Batter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Munny.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Inventory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Trader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stick.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Iron.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Batter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Munny.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
